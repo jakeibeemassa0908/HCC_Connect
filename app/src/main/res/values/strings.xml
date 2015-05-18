@@ -6,10 +6,10 @@
     <string name="title_section2">Financials</string>
     <string name="title_section3">Schedule</string>
     <string name="title_section4">Academics</string>
-    <string name="title_section5">Dashboard</string>
-    <string name="title_section6">Financials</string>
-    <string name="title_section7">Schedule</string>
-    <string name="title_section8">Academics</string>
+    <string name="title_section5">Enrollment</string>
+    <string name="title_section6">My Information</string>
+    <string name="title_section7">My Widgets</string>
+    <string name="title_section8">EGLS3</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>

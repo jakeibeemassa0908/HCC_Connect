@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.net.URL;
-
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -62,6 +60,22 @@ public  class PlaceholderFragment extends Fragment {
                 //academics
                 mUrl = mBaseUrl+"/index.php/app/profile/submenus/myacad";
                 break;
+            case 5:
+                //Enrollment
+                mUrl= mBaseUrl+"/index.php/app/profile/submenus/enrollment";
+                break;
+            case 6:
+                //My Information
+                mUrl =mBaseUrl+"/index.php/app/profile/submenus/myinfo";
+                break;
+            case 7:
+                //Widgets
+                mUrl= mBaseUrl+"/index.php/app/user/widget";
+                break;
+            case 8:
+                //EGLS3
+                mUrl = mBaseUrl+"/index.php/app/courseval/EGLS3";
+                break;
             default:
                 mUrl=mBaseUrl;
         }
@@ -69,12 +83,25 @@ public  class PlaceholderFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
         mWebView = (WebView)rootView.findViewById(R.id.webView);
 
-        mWebView.setWebViewClient(new WebViewClient(){
-            public boolean shouldOverrideUrlLoading(WebView view, String url){
-                return false;
+        mWebView.getSettings().setJavaScriptEnabled(true);
+
+        mWebView.setWebViewClient(new WebViewClient() {
+
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true; // super.shouldOverrideUrlLoading(view, url);
+            }
+
+            public void onPageFinished(WebView view, String url) {
+                mWebView.loadUrl("javascript:(function() { "
+                        + "document.getElementById('open-sidebar').style.visibility='hidden';"
+                        + "})()");
+
+                mWebView.loadUrl("javascript:(function() { "
+                        + "document.getElementById('setting').style.visibility='hidden';"
+                        + "})()");
             }
         });
-        mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl(mUrl);
 
         return rootView;
