@@ -18,6 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".Dashboard"
+            android:theme="@style/aboutTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hccs.app.hccconnect.Dashboard" />
+        </activity>
     </application>
 
 </manifest>
