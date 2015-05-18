@@ -67,6 +67,9 @@ public class Dashboard extends Activity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                break;
         }
     }
 
@@ -84,7 +87,7 @@ public class Dashboard extends Activity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.dashboard, menu);
+            //getMenuInflater().inflate(R.menu.dashboard, menu);
             restoreActionBar();
             return true;
         }
