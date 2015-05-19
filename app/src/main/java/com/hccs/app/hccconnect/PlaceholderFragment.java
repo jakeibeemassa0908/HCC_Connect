@@ -2,12 +2,16 @@ package com.hccs.app.hccconnect;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -18,10 +22,12 @@ public  class PlaceholderFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
+    public static int mNumber;
 
     private String mBaseUrl= "https://psmobile.hccs.edu";
     private String mUrl;
     private WebView mWebView;
+
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -43,6 +49,7 @@ public  class PlaceholderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         int number = getArguments().getInt(ARG_SECTION_NUMBER);
+        mNumber=number;
         switch (number){
             case 1:
                 //Dashboard
@@ -81,10 +88,13 @@ public  class PlaceholderFragment extends Fragment {
         }
 
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        final ProgressBar progressBar =(ProgressBar)rootView.findViewById(R.id.progress);
+        progressBar.setMax(100);
+        //progressBar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+
         mWebView = (WebView)rootView.findViewById(R.id.webView);
-
         mWebView.getSettings().setJavaScriptEnabled(true);
-
         mWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -97,11 +107,26 @@ public  class PlaceholderFragment extends Fragment {
                         + "document.getElementById('open-sidebar').style.visibility='hidden';"
                         + "})()");
 
-                mWebView.loadUrl("javascript:(function() { "
-                        + "document.getElementById('setting').style.visibility='hidden';"
-                        + "})()");
+                //If schedule view, leave the setting menu
+                if(mNumber != 3){
+                    mWebView.loadUrl("javascript:(function() { "
+                            + "document.getElementById('setting').style.visibility='hidden';"
+                            + "})()");
+                }
             }
         });
+
+        mWebView.setWebChromeClient(new WebChromeClient(){
+            public void onProgressChanged(WebView webView, int progress){
+                if(progress ==100){
+                    mWebView.setVisibility(View.VISIBLE);
+                }else{
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(progress);
+                }
+            }
+        });
+
         mWebView.loadUrl(mUrl);
 
         return rootView;
