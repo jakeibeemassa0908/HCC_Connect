@@ -2,6 +2,7 @@ package com.hccs.app.hccconnect;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -45,6 +46,12 @@ public  class PlaceholderFragment extends Fragment {
     }
 
     public PlaceholderFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @SuppressWarnings("SetJavaScriptEnabled")
@@ -102,7 +109,6 @@ public  class PlaceholderFragment extends Fragment {
 
         mWebView = (WebView)rootView.findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setDomStorageEnabled(true);
         mWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -145,6 +151,11 @@ public  class PlaceholderFragment extends Fragment {
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return true;
     }
@@ -152,7 +163,5 @@ public  class PlaceholderFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Dashboard) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }

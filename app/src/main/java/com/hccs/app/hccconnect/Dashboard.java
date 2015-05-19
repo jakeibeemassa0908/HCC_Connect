@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -28,10 +29,6 @@ public class Dashboard extends Activity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,6 @@ public class Dashboard extends Activity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         getActionBar().setElevation(0);
         // Set up the drawer.
@@ -64,36 +60,10 @@ public class Dashboard extends Activity
         }
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-            case 4:
-                mTitle = getString(R.string.title_section4);
-                break;
-            case 5:
-                mTitle = getString(R.string.title_section5);
-                break;
-            case 6:
-                mTitle = getString(R.string.title_section6);
-                break;
-            case 7:
-                mTitle = getString(R.string.title_section7);
-                break;
-            case 8:
-                mTitle = getString(R.string.title_section8);
-                break;
-        }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
