@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
@@ -83,6 +86,10 @@ public  class PlaceholderFragment extends Fragment {
                 //EGLS3
                 mUrl = mBaseUrl+"/index.php/app/courseval/EGLS3";
                 break;
+            case 10:
+                //Logout
+                mUrl=mBaseUrl+"/index.php/app/profile/logout";
+                break;
             default:
                 mUrl=mBaseUrl;
         }
@@ -95,6 +102,7 @@ public  class PlaceholderFragment extends Fragment {
 
         mWebView = (WebView)rootView.findViewById(R.id.webView);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setDomStorageEnabled(true);
         mWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -113,6 +121,10 @@ public  class PlaceholderFragment extends Fragment {
                             + "document.getElementById('setting').style.visibility='hidden';"
                             + "})()");
                 }
+                String user="W206630122";
+                String pwd = "RienN_estImpossible1991";
+                mWebView.loadUrl("javascript: var x=document.getElementsByName('username')[0].value ='"+user+"';");
+                mWebView.loadUrl("javascript: var x=document.getElementsByName('password')[0].value ='"+pwd+"';");
             }
         });
 
@@ -130,6 +142,11 @@ public  class PlaceholderFragment extends Fragment {
         mWebView.loadUrl(mUrl);
 
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return true;
     }
 
     @Override

@@ -93,12 +93,6 @@ public class Dashboard extends Activity
         }
     }
 
-    public void restoreActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        //actionBar.setTitle(mTitle);
-    }
 
 
     @Override
@@ -108,7 +102,6 @@ public class Dashboard extends Activity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.dashboard, menu);
-            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);

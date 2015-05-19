@@ -8,8 +8,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -24,8 +26,11 @@ public class AboutFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView= inflater.inflate(R.layout.about_fragment,container,false);
-        mWebView = (WebView)rootView.findViewById(R.id.webView_about);
+        View rootView= inflater.inflate(R.layout.fragment_dashboard,container,false);
+        mWebView = (WebView)rootView.findViewById(R.id.webView);
+
+        final ProgressBar progressBar =(ProgressBar)rootView.findViewById(R.id.progress);
+        progressBar.setMax(100);
 
         mWebView.getSettings().setJavaScriptEnabled(true);
 
@@ -47,6 +52,19 @@ public class AboutFragment extends Fragment {
             }
 
         });
+
+        mWebView.setWebChromeClient(new WebChromeClient(){
+            public void onProgressChanged(WebView webView, int progress){
+                if(progress ==100){
+                    mWebView.setVisibility(View.VISIBLE);
+                }else{
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(progress);
+                }
+            }
+        });
+
+
         mWebView.loadUrl(abouturl);
         return rootView;
     }
