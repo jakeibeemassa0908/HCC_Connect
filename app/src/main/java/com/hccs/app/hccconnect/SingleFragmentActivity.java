@@ -1,8 +1,6 @@
 package com.hccs.app.hccconnect;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
 /**
@@ -10,7 +8,7 @@ import android.support.v7.app.ActionBarActivity;
  */
 public abstract class SingleFragmentActivity extends ActionBarActivity {
 
-    protected abstract Fragment createFragment();
+    protected abstract android.app.Fragment createFragment();
 
     protected int getLayoutResId(){
         return R.layout.activity_fragment;
@@ -23,8 +21,8 @@ public abstract class SingleFragmentActivity extends ActionBarActivity {
 
         setContentView(getLayoutResId());
 
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.container);
+        android.app.FragmentManager fm = getFragmentManager();
+        android.app.Fragment fragment = fm.findFragmentById(R.id.container);
 
         if(fragment == null){
             fragment = createFragment();

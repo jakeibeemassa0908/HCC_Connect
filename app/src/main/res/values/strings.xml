@@ -23,5 +23,8 @@
     <string name="pref_enter_username_title">Username</string>
     <string name="password_summary">Enter Password</string>
     <string name="pref_enter_password_title">Password</string>
+    <string name="noInternet">Can\'t connect to the internet</string>
+    <string name="tryAgain">Try Again</string>
+    <string name="no_email_client">No email client found</string>
 
 </resources>
