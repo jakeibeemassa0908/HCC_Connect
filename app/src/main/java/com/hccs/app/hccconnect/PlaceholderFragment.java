@@ -148,6 +148,9 @@ public  class PlaceholderFragment extends Fragment {
                             + "})()");
                 }
 
+                mWebView.loadUrl("javascript: var x=document.getElementsByTagName('footer')[0].innerHTML='<span>hello</span>';");
+
+
                 SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 if(mSharedPrefs.getBoolean(SettingsActivity.PREF_AUTOFILL,false)){
                     if(url.equals("https://psmobile.hccs.edu/index.php/app/profile/loginform")){

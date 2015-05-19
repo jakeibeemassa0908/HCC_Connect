@@ -26,5 +26,6 @@
     <string name="noInternet">Can\'t connect to the internet</string>
     <string name="tryAgain">Try Again</string>
     <string name="no_email_client">No email client found</string>
+    <string name="Htowncc">Houston Community College</string>
 
 </resources>

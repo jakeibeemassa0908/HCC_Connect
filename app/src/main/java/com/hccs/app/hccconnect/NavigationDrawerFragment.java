@@ -4,6 +4,7 @@ package com.hccs.app.hccconnect;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
@@ -19,8 +20,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -57,6 +62,10 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+
+    private ArrayList<DrawerItem> mDrawerItems;
+
+    private DrawerItem header,dashboard,financials, schedule,academics,enrollment,myInfo,widgets,EGLS,about;
 
     public NavigationDrawerFragment() {
     }
@@ -97,23 +106,11 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                R.layout.drawer_item,
-                R.id.drawerItem,
-                new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
-                        getString(R.string.title_section4),
-                        getString(R.string.title_section5),
-                        getString(R.string.title_section6),
-                        getString(R.string.title_section7),
-                        getString(R.string.title_section8),
-                        getString(R.string.title_section9),
-                        getString(R.string.title_section10)
 
-                }));
+        mDrawerItems = new ArrayList<DrawerItem>();
+        createDrawerItems();
+
+        mDrawerListView.setAdapter(new DrawerAdapter(mDrawerItems));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -280,5 +277,77 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+
+    private void createDrawerItems(){
+        header = new DrawerItem();
+        header.setType(DrawerItem.TYPE_HEADER);
+        mDrawerItems.add(header);
+
+        financials = new DrawerItem();
+        financials.setTitle(getString(R.string.title_section1));
+        mDrawerItems.add(financials);
+
+        schedule = new DrawerItem();
+        schedule.setTitle(getString(R.string.title_section2));
+        mDrawerItems.add(schedule);
+
+        academics = new DrawerItem();
+        academics.setTitle(getString(R.string.title_section3));
+        mDrawerItems.add(academics);
+
+        enrollment = new DrawerItem();
+        enrollment.setTitle(getString(R.string.title_section4));
+        mDrawerItems.add(enrollment);
+
+        myInfo = new DrawerItem();
+        myInfo.setTitle(getString(R.string.title_section4));
+        mDrawerItems.add(myInfo);
+
+        widgets = new DrawerItem();
+        widgets.setTitle(getString(R.string.title_section5));
+        mDrawerItems.add(widgets);
+
+        EGLS = new DrawerItem();
+        EGLS.setTitle(getString(R.string.title_section6));
+        mDrawerItems.add(EGLS);
+
+        about = new DrawerItem();
+        about.setTitle(getString(R.string.title_section7));
+        mDrawerItems.add(about);
+    }
+
+    public class DrawerAdapter extends ArrayAdapter<DrawerItem>{
+
+        public DrawerAdapter(ArrayList<DrawerItem> items) {
+            super(getActivity(),0,items);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            DrawerItem item = getItem(position);
+            if(convertView==null){
+                if(item.getType() ==DrawerItem.TYPE_HEADER){
+                    convertView= getActivity().getLayoutInflater().inflate(R.layout.drawer_list_header,null);
+
+                }else if(item.getType() == DrawerItem.TYPE_TITLE){
+
+                }else{
+                    convertView = getActivity().getLayoutInflater().inflate(R.layout.drawer_item,null);
+                }
+
+                if(item.getType()==DrawerItem.TYPE_HEADER){
+
+                }else if (item.getType() == DrawerItem.TYPE_TITLE){
+
+                }else{
+                    TextView text = (TextView)convertView.findViewById(R.id.drawerItem);
+                    text.setText(item.getTitle());
+
+                    ImageView icon = (ImageView)convertView.findViewById(R.id.icon);
+                }
+            }
+            return convertView;
+        }
     }
 }
