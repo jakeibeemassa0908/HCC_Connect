@@ -17,5 +17,11 @@
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
     <string name="action_login">Insert</string>
+    <string name="autofil_login">Autofill Login credentials</string>
+    <string name="autofil_summary">Do you want your login credential to be autofilled ?</string>
+    <string name="username_summary">Enter username</string>
+    <string name="pref_enter_username_title">Username</string>
+    <string name="password_summary">Enter Password</string>
+    <string name="pref_enter_password_title">Password</string>
 
 </resources>

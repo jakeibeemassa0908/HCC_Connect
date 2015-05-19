@@ -2,10 +2,14 @@ package com.hccs.app.hccconnect;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,11 +52,6 @@ public  class PlaceholderFragment extends Fragment {
     public PlaceholderFragment() {
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
 
     @SuppressWarnings("SetJavaScriptEnabled")
     @Override
@@ -105,6 +104,7 @@ public  class PlaceholderFragment extends Fragment {
 
         final ProgressBar progressBar =(ProgressBar)rootView.findViewById(R.id.progress);
         progressBar.setMax(100);
+
         //progressBar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
         mWebView = (WebView)rootView.findViewById(R.id.webView);
@@ -127,10 +127,22 @@ public  class PlaceholderFragment extends Fragment {
                             + "document.getElementById('setting').style.visibility='hidden';"
                             + "})()");
                 }
-                String user="W206630122";
-                String pwd = "RienN_estImpossible1991";
-                mWebView.loadUrl("javascript: var x=document.getElementsByName('username')[0].value ='"+user+"';");
-                mWebView.loadUrl("javascript: var x=document.getElementsByName('password')[0].value ='"+pwd+"';");
+
+                SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                if(mSharedPrefs.getBoolean(SettingsActivity.PREF_AUTOFILL,false)){
+                    if(url.equals("https://psmobile.hccs.edu/index.php/app/profile/loginform")){
+                        String user=mSharedPrefs.getString(SettingsActivity.PREF_USERNAME,"");
+                        String pwd =mSharedPrefs.getString(SettingsActivity.PREF_PWD,"");
+                        mWebView.loadUrl("javascript: var x=document.getElementsByName('username')[0].value ='"+user+"';");
+                        mWebView.loadUrl("javascript: var x=document.getElementsByName('password')[0].value ='"+pwd+"';");
+                    }
+                }
+            }
+
+            public void onPageStarted(WebView view, String url, Bitmap favicon){
+                mWebView.loadUrl("javascript:(function() { "
+                        + "document.getElementById('open-sidebar').style.visibility='hidden';"
+                        + "})()");
             }
         });
 
@@ -139,6 +151,7 @@ public  class PlaceholderFragment extends Fragment {
                 if(progress ==100){
                     mWebView.setVisibility(View.VISIBLE);
                 }else{
+                    mWebView.setVisibility(View.GONE);
                     progressBar.setVisibility(View.VISIBLE);
                     progressBar.setProgress(progress);
                 }
@@ -148,16 +161,6 @@ public  class PlaceholderFragment extends Fragment {
         mWebView.loadUrl(mUrl);
 
         return rootView;
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return true;
     }
 
     @Override

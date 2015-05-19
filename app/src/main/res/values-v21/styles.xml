@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="android:Theme.Material">
+    <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="android:colorPrimary">@color/yellow</item>
         <item name="android:colorPrimaryDark">@color/dark_yellow</item>
     </style>

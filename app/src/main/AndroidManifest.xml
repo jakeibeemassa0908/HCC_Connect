@@ -28,6 +28,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.hccs.app.hccconnect.Dashboard" />
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".Dashboard"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/action_settings"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.hccs.app.hccconnect.Dashboard" />
+        </activity>
+
     </application>
 
 </manifest>
