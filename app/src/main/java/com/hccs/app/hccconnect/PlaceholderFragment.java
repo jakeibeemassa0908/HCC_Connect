@@ -2,12 +2,16 @@ package com.hccs.app.hccconnect;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -19,7 +23,10 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -35,6 +42,8 @@ public  class PlaceholderFragment extends Fragment {
     private String mBaseUrl= "https://psmobile.hccs.edu";
     private String mUrl;
     private WebView mWebView;
+    private  ProgressBar progressBar;
+    private LinearLayout noInternetLayout;
 
 
     /**
@@ -92,6 +101,9 @@ public  class PlaceholderFragment extends Fragment {
                 //EGLS3
                 mUrl = mBaseUrl+"/index.php/app/courseval/EGLS3";
                 break;
+            case 9:
+                mUrl = mBaseUrl+"/index.php/app/about";
+                break;
             case 10:
                 //Logout
                 mUrl=mBaseUrl+"/index.php/app/profile/logout";
@@ -102,9 +114,16 @@ public  class PlaceholderFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        final ProgressBar progressBar =(ProgressBar)rootView.findViewById(R.id.progress);
+        progressBar =(ProgressBar)rootView.findViewById(R.id.progress);
         progressBar.setMax(100);
-
+        noInternetLayout = (LinearLayout)rootView.findViewById(R.id.noInternetLayout);
+        Button tryAgain = (Button)rootView.findViewById(R.id.try_again_button);
+        tryAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAndLoad(mWebView,mUrl);
+            }
+        });
         //progressBar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
         mWebView = (WebView)rootView.findViewById(R.id.webView);
@@ -112,7 +131,8 @@ public  class PlaceholderFragment extends Fragment {
         mWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+                //if network active and connected
+                checkAndLoad(view,url);
                 return true; // super.shouldOverrideUrlLoading(view, url);
             }
 
@@ -146,6 +166,7 @@ public  class PlaceholderFragment extends Fragment {
             }
         });
 
+
         mWebView.setWebChromeClient(new WebChromeClient(){
             public void onProgressChanged(WebView webView, int progress){
                 if(progress ==100){
@@ -158,9 +179,47 @@ public  class PlaceholderFragment extends Fragment {
             }
         });
 
-        mWebView.loadUrl(mUrl);
+        checkAndLoad(mWebView,mUrl);
 
         return rootView;
+    }
+
+    private boolean checkAndLoad(WebView webView, String url){
+        if(url.startsWith("tel:")){
+            String number =url.replace("-","").replace("/","");
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(number));
+            startActivity(intent);
+            return true;
+        }else if(url.startsWith("mailto:")){
+            String email=url.replace("mailto:","").trim();
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("message/rfc822");
+            intent.putExtra(Intent.EXTRA_EMAIL,new String[]{email});
+            try{
+                startActivity(intent);
+                return true;
+            }catch (android.content.ActivityNotFoundException ex ){
+                Toast.makeText(getActivity(), getString(R.string.no_email_client), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        }
+
+        //if network active and connected
+        if(isNetworkAvailable()){
+            webView.loadUrl(url);
+            noInternetLayout.setVisibility(View.GONE);
+        }else{
+            mWebView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            noInternetLayout.setVisibility(View.VISIBLE);
+        }
+        return true;
+    }
+
+    private boolean isNetworkAvailable(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 
     @Override

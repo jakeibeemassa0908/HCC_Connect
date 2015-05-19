@@ -14,8 +14,8 @@ public class AboutActivity extends SingleFragmentActivity {
     }
 
     @Override
-    protected Fragment createFragment() {
-        return new AboutFragment();
+    protected android.app.Fragment createFragment() {
+        return new PlaceholderFragment().newInstance(9);
     }
 
     @Override
