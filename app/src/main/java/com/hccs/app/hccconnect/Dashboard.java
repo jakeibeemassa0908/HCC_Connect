@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -22,7 +23,9 @@ import android.widget.TextView;
 
 
 public class Dashboard extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+     implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private String mFullSiteURL ="https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -51,7 +54,18 @@ public class Dashboard extends Activity
         if(position==9){
             Intent aboutIntent = new Intent(this,AboutActivity.class);
             startActivity(aboutIntent);
-        }else{
+        }else if(position == 17){
+            Intent openFullSiteIntent = new Intent(Intent.ACTION_VIEW);
+            openFullSiteIntent.setData(Uri.parse(mFullSiteURL));
+            startActivity(openFullSiteIntent);
+
+            // avoid infinite loop when try to go back to the app
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, PlaceholderFragment.newInstance(1))
+                    .commit();
+        }
+        else{
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()

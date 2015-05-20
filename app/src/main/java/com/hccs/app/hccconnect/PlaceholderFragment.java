@@ -127,7 +127,6 @@ public  class PlaceholderFragment extends Fragment {
                 //calendar
                 mUrl = mBaseUrl+"/index.php/app/services/athletics";
                 break;
-
             default:
                 mUrl=mBaseUrl;
         }

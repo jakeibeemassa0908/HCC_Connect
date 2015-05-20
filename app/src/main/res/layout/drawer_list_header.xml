@@ -1,43 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/black"
-    android:layout_height="70dp">
+    android:layout_height="80dp">
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_weight="6"
-        android:src="@drawable/hccwhite"
-        android:layout_marginRight="7dp"
-        android:layout_height="60dp" />
-    
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginRight="5dp"
-       android:layout_marginTop="8dp"
-        android:layout_weight="5">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="70dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
+        <ImageView
+            android:layout_width="0dp"
             android:layout_weight="5"
-            android:textColor="@color/dark_yellow"
-            android:textSize="@dimen/abc_text_size_medium_material"
-            android:text="@string/welcome"
-            />
-        <TextView
-            android:id="@+id/login_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_weight="5"
-            android:textColor="@color/dark_yellow"
-            android:text="@string/login_out"/>
+            android:src="@drawable/hccwhite"
+            android:layout_marginRight="7dp"
+            android:layout_height="60dp" />
+        <View
+            android:layout_width="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_weight="5"
+                android:textColor="@color/dark_yellow"
+                android:textSize="@dimen/abc_text_size_medium_material"
+                android:text="@string/welcome"
+                />
+            <TextView
+                android:id="@+id/login_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="5"
+                android:textColor="@color/dark_yellow"
+                android:text="@string/login_out"/>
 
         </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+ </LinearLayout>
