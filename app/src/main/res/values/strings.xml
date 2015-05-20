@@ -11,7 +11,15 @@
     <string name="title_section7">My Widgets</string>
     <string name="title_section8">EGLS3</string>
     <string name="title_section9">About</string>
-    <string name="title_section10">Logout</string>
+    <string name="login_out">Login/Logout</string>
+    <string name="title_section11">Course Catalog</string>
+    <string name="title_section12">Class Search</string>
+    <string name="title_section13">Campus Map</string>
+    <string name="title_section14">News</string>
+    <string name="title_section15">Library</string>
+    <string name="title_section16">Calendar</string>
+    <string name="title_section17">Full Site</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -27,5 +35,7 @@
     <string name="tryAgain">Try Again</string>
     <string name="no_email_client">No email client found</string>
     <string name="Htowncc">Houston Community College</string>
+    <string name="welcome">Welcome</string>
+    <string name="public_links">Public Links</string>
 
 </resources>

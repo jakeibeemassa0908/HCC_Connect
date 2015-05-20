@@ -5,21 +5,16 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -104,10 +99,35 @@ public  class PlaceholderFragment extends Fragment {
             case 9:
                 mUrl = mBaseUrl+"/index.php/app/about";
                 break;
-            case 10:
+            case -1:
                 //Logout
                 mUrl=mBaseUrl+"/index.php/app/profile/logout";
                 break;
+            case 11:
+                //course catalog
+                mUrl = mBaseUrl+"/index.php/app/catalog/listCatalogCareers";
+                break;
+            case 12:
+                //class search
+                mUrl = mBaseUrl+"/index.php/app/catalog/classSearch";
+                break;
+            case 13:
+                //campus map
+                mUrl = mBaseUrl+"/index.php/app/catalog/listBuilding";
+                break;
+            case 14:
+                //news
+                mUrl = mBaseUrl+"/index.php/app/services/news";
+                break;
+            case 15:
+                //library
+                mUrl = "http://library.hccs.edu/mobile/3575";
+                break;
+            case 16:
+                //calendar
+                mUrl = mBaseUrl+"/index.php/app/services/athletics";
+                break;
+
             default:
                 mUrl=mBaseUrl;
         }
@@ -179,6 +199,10 @@ public  class PlaceholderFragment extends Fragment {
                     progressBar.setVisibility(View.VISIBLE);
                     progressBar.setProgress(progress);
                 }
+            }
+
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                callback.invoke(origin, true, false);
             }
         });
 

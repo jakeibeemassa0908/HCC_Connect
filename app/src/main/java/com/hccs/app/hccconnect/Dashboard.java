@@ -48,14 +48,14 @@ public class Dashboard extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         //If About
-        if(position==8){
+        if(position==9){
             Intent aboutIntent = new Intent(this,AboutActivity.class);
             startActivity(aboutIntent);
         }else{
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                    .replace(R.id.container, PlaceholderFragment.newInstance(position))
                     .commit();
         }
     }

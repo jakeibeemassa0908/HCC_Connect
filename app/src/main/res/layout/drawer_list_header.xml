@@ -8,7 +8,7 @@
 
     <ImageView
         android:layout_width="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:src="@drawable/hccwhite"
         android:layout_marginRight="7dp"
         android:layout_height="60dp" />
@@ -17,25 +17,26 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:orientation="vertical"
+        android:layout_gravity="center"
         android:layout_marginRight="5dp"
-        android:layout_weight="10">
+       android:layout_marginTop="8dp"
+        android:layout_weight="5">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="20dp"
             android:layout_weight="5"
             android:textColor="@color/dark_yellow"
-            android:layout_gravity="right"
             android:textSize="@dimen/abc_text_size_medium_material"
-            android:text="@string/Htowncc"
+            android:text="@string/welcome"
             />
         <TextView
+            android:id="@+id/login_logout"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="30dp"
             android:layout_weight="5"
-            android:layout_gravity="right"
             android:textColor="@color/dark_yellow"
-            android:text="Login/Logout"/>
+            android:text="@string/login_out"/>
 
         </LinearLayout>
 
