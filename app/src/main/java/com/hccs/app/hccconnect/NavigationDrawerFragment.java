@@ -65,7 +65,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     private ArrayList<DrawerItem> mDrawerItems;
 
-    private DrawerItem header,dashboard,financials, schedule,academics,enrollment,myInfo,widgets,EGLS,about;
+    private DrawerItem  publiclinks,header,dashboard,financials,
+            schedule,academics,enrollment,myInfo,widgets,EGLS,about
+            ,courseCat,classSearch,campusMap,news,library,calendar,fullSite;
 
     public NavigationDrawerFragment() {
     }
@@ -284,37 +286,78 @@ public class NavigationDrawerFragment extends Fragment {
         header.setType(DrawerItem.TYPE_HEADER);
         mDrawerItems.add(header);
 
+
+
+        dashboard = new DrawerItem();
+        dashboard.setTitle(getString(R.string.title_section1));
+        mDrawerItems.add(dashboard);
+
         financials = new DrawerItem();
-        financials.setTitle(getString(R.string.title_section1));
+        financials.setTitle(getString(R.string.title_section2));
         mDrawerItems.add(financials);
 
         schedule = new DrawerItem();
-        schedule.setTitle(getString(R.string.title_section2));
+        schedule.setTitle(getString(R.string.title_section3));
         mDrawerItems.add(schedule);
 
         academics = new DrawerItem();
-        academics.setTitle(getString(R.string.title_section3));
+        academics.setTitle(getString(R.string.title_section4));
         mDrawerItems.add(academics);
 
         enrollment = new DrawerItem();
-        enrollment.setTitle(getString(R.string.title_section4));
+        enrollment.setTitle(getString(R.string.title_section5));
         mDrawerItems.add(enrollment);
 
         myInfo = new DrawerItem();
-        myInfo.setTitle(getString(R.string.title_section4));
+        myInfo.setTitle(getString(R.string.title_section6));
         mDrawerItems.add(myInfo);
 
         widgets = new DrawerItem();
-        widgets.setTitle(getString(R.string.title_section5));
+        widgets.setTitle(getString(R.string.title_section7));
         mDrawerItems.add(widgets);
 
         EGLS = new DrawerItem();
-        EGLS.setTitle(getString(R.string.title_section6));
+        EGLS.setTitle(getString(R.string.title_section8));
         mDrawerItems.add(EGLS);
 
         about = new DrawerItem();
-        about.setTitle(getString(R.string.title_section7));
+        about.setTitle(getString(R.string.title_section9));
         mDrawerItems.add(about);
+
+        publiclinks = new DrawerItem();
+        publiclinks.setTitle(getString(R.string.public_links));
+        publiclinks.setType(DrawerItem.TYPE_TITLE);
+        mDrawerItems.add(publiclinks);
+
+        courseCat = new DrawerItem();
+        courseCat.setTitle(getString(R.string.title_section11));
+        mDrawerItems.add(courseCat);
+
+        classSearch = new DrawerItem();
+        classSearch.setTitle(getString(R.string.title_section12));
+        mDrawerItems.add(classSearch);
+
+        campusMap = new DrawerItem();
+        campusMap.setTitle(getString(R.string.title_section13));
+        mDrawerItems.add(campusMap);
+
+        news = new DrawerItem();
+        news.setTitle(getString(R.string.title_section14));
+        mDrawerItems.add(news);
+
+        library = new DrawerItem();
+        library.setTitle(getString(R.string.title_section15));
+        mDrawerItems.add(library);
+
+        calendar = new DrawerItem();
+        calendar.setTitle(getString(R.string.title_section16));
+        mDrawerItems.add(calendar);
+
+        fullSite = new DrawerItem();
+        fullSite.setTitle(getString(R.string.title_section17));
+        mDrawerItems.add(fullSite);
+
+
     }
 
     public class DrawerAdapter extends ArrayAdapter<DrawerItem>{
@@ -326,19 +369,28 @@ public class NavigationDrawerFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             DrawerItem item = getItem(position);
-            if(convertView==null){
                 if(item.getType() ==DrawerItem.TYPE_HEADER){
                     convertView= getActivity().getLayoutInflater().inflate(R.layout.drawer_list_header,null);
 
                 }else if(item.getType() == DrawerItem.TYPE_TITLE){
-
+                    convertView = getActivity().getLayoutInflater().inflate(R.layout.drawer_title,null);
                 }else{
                     convertView = getActivity().getLayoutInflater().inflate(R.layout.drawer_item,null);
                 }
 
                 if(item.getType()==DrawerItem.TYPE_HEADER){
+                    TextView login_out = (TextView)convertView.findViewById(R.id.login_logout);
+                    login_out.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mDrawerLayout.closeDrawer(mFragmentContainerView);
+                            mCallbacks.onNavigationDrawerItemSelected(-1);
+                        }
+                    });
 
                 }else if (item.getType() == DrawerItem.TYPE_TITLE){
+                    TextView text = (TextView)convertView.findViewById(R.id.drawer_title);
+                    text.setText(item.getTitle());
 
                 }else{
                     TextView text = (TextView)convertView.findViewById(R.id.drawerItem);
@@ -346,7 +398,7 @@ public class NavigationDrawerFragment extends Fragment {
 
                     ImageView icon = (ImageView)convertView.findViewById(R.id.icon);
                 }
-            }
+
             return convertView;
         }
     }
