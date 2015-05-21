@@ -57,13 +57,15 @@ public class Dashboard extends Activity
         }else if(position == 17){
             Intent openFullSiteIntent = new Intent(Intent.ACTION_VIEW);
             openFullSiteIntent.setData(Uri.parse(mFullSiteURL));
-            startActivity(openFullSiteIntent);
+
 
             // avoid infinite loop when try to go back to the app
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(1))
+                    .replace(R.id.container, PlaceholderFragment.newInstance(17))
                     .commit();
+
+            startActivity(openFullSiteIntent);
         }
         else{
             // update the main content by replacing fragments

@@ -290,38 +290,49 @@ public class NavigationDrawerFragment extends Fragment {
 
         dashboard = new DrawerItem();
         dashboard.setTitle(getString(R.string.title_section1));
+        dashboard.setImage(R.drawable.ic_action_action_home);
         mDrawerItems.add(dashboard);
+
 
         financials = new DrawerItem();
         financials.setTitle(getString(R.string.title_section2));
+        financials.setImage(R.drawable.ic_action_action_trending_up);
         mDrawerItems.add(financials);
+
 
         schedule = new DrawerItem();
         schedule.setTitle(getString(R.string.title_section3));
+        schedule.setImage(R.drawable.ic_action_action_today);
         mDrawerItems.add(schedule);
 
         academics = new DrawerItem();
         academics.setTitle(getString(R.string.title_section4));
+        academics.setImage(R.drawable.ic_action_editor_border_color);
         mDrawerItems.add(academics);
 
         enrollment = new DrawerItem();
         enrollment.setTitle(getString(R.string.title_section5));
+        enrollment.setImage(R.drawable.ic_action_social_school);
         mDrawerItems.add(enrollment);
 
         myInfo = new DrawerItem();
         myInfo.setTitle(getString(R.string.title_section6));
+        myInfo.setImage(R.drawable.ic_action_social_person);
         mDrawerItems.add(myInfo);
 
         widgets = new DrawerItem();
         widgets.setTitle(getString(R.string.title_section7));
+        widgets.setImage(R.drawable.ic_action_action_settings);
         mDrawerItems.add(widgets);
 
         EGLS = new DrawerItem();
         EGLS.setTitle(getString(R.string.title_section8));
+        EGLS.setImage(R.drawable.ic_action_social_people);
         mDrawerItems.add(EGLS);
 
         about = new DrawerItem();
         about.setTitle(getString(R.string.title_section9));
+        about.setImage(R.drawable.ic_action_alert_error);
         mDrawerItems.add(about);
 
         publiclinks = new DrawerItem();
@@ -331,30 +342,37 @@ public class NavigationDrawerFragment extends Fragment {
 
         courseCat = new DrawerItem();
         courseCat.setTitle(getString(R.string.title_section11));
+        courseCat.setImage(R.drawable.ic_action_maps_local_library);
         mDrawerItems.add(courseCat);
 
         classSearch = new DrawerItem();
         classSearch.setTitle(getString(R.string.title_section12));
+        classSearch.setImage(R.drawable.ic_action_action_search);
         mDrawerItems.add(classSearch);
 
         campusMap = new DrawerItem();
         campusMap.setTitle(getString(R.string.title_section13));
+        campusMap.setImage(R.drawable.ic_action_maps_place);
         mDrawerItems.add(campusMap);
 
         news = new DrawerItem();
         news.setTitle(getString(R.string.title_section14));
+        news.setImage(R.drawable.ic_action_maps_local_library);
         mDrawerItems.add(news);
 
         library = new DrawerItem();
         library.setTitle(getString(R.string.title_section15));
+        library.setImage(R.drawable.ic_action_maps_local_library);
         mDrawerItems.add(library);
 
         calendar = new DrawerItem();
         calendar.setTitle(getString(R.string.title_section16));
+        calendar.setImage(R.drawable.ic_action_notification_event_note);
         mDrawerItems.add(calendar);
 
         fullSite = new DrawerItem();
         fullSite.setTitle(getString(R.string.title_section17));
+        fullSite.setImage(R.drawable.ic_action_action_language);
         mDrawerItems.add(fullSite);
 
 
@@ -395,8 +413,10 @@ public class NavigationDrawerFragment extends Fragment {
                 }else{
                     TextView text = (TextView)convertView.findViewById(R.id.drawerItem);
                     text.setText(item.getTitle());
-
                     ImageView icon = (ImageView)convertView.findViewById(R.id.icon);
+                    if(item.getImage()!=-1){
+                        icon.setImageResource(item.getImage());
+                    }
                 }
 
             return convertView;

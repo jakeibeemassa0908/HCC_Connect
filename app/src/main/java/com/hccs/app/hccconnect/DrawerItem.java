@@ -13,7 +13,7 @@ public class DrawerItem {
     private int mPriority;
 
     public DrawerItem(){
-
+        mImage=-1;
     }
 
     public DrawerItem(String title, int image){
