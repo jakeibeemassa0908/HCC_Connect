@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.hccs.app.hccconnect"
+        applicationId "com.hccs.app.studentIn"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

@@ -4,13 +4,58 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard$PlaceholderFragment">
 
-    <WebView
-        android:id="@+id/webView_about"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
-    </WebView>
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse"/>
 
+    <LinearLayout
+        android:id="@+id/noInternetLayout"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:text="@string/noInternet"/>
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/tryAgain"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </WebView>
+        <Button
+            android:id="@+id/disclaimer_button"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:text="App Disclaimer"
+            android:textColor="@color/white"
+            android:background="@drawable/background_discl"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </RelativeLayout>

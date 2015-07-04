@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">HCC Connect</string>
+    <string name="hcc">Houston Community College</string>
     <string name="title_section1">Dashboard</string>
     <string name="title_section2">Financials</string>
     <string name="title_section3">Schedule</string>
@@ -37,5 +38,14 @@
     <string name="Htowncc">Houston Community College</string>
     <string name="welcome">Welcome</string>
     <string name="public_links">Public Links</string>
+    <string name="version">Version %1$s</string>
+    <string name="copyright_text">Jake Ibee Massa. Copyright ©%1$d</string>
+    <string name="disclaimer">\n
+        This is not the official HCC app.\n
+        The content found in this app is fully and only own by HCC.\n
+        The sole purpose of this app is to provide a User friendly access to the HCC mobile site.\n
+        This app only communicates with the HCC website and no other one.\n
+        No data from your account or saved password is sent to another location.
+    </string>
 
 </resources>
