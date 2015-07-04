@@ -1,8 +1,7 @@
-package com.hccs.app.hccconnect;
+package com.hccs.app.studentIn;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 /**
  * Created by theotherside on 11/04/15.
@@ -15,7 +14,7 @@ public class AboutActivity extends SingleFragmentActivity {
 
     @Override
     protected android.app.Fragment createFragment() {
-        return new PlaceholderFragment().newInstance(9);
+        return new AboutFragment();
     }
 
     @Override

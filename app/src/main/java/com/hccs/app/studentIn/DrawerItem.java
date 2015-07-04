@@ -1,4 +1,4 @@
-package com.hccs.app.hccconnect;
+package com.hccs.app.studentIn;
 
 /**
  * Created by theotherside on 09/03/15.

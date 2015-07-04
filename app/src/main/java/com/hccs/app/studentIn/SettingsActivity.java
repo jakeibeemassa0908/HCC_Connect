@@ -1,4 +1,4 @@
-package com.hccs.app.hccconnect;
+package com.hccs.app.studentIn;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
