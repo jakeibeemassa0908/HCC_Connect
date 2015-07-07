@@ -47,5 +47,6 @@
         This app only communicates with the HCC website and no other one.\n
         No data from your account or saved password is sent to another location.
     </string>
+    <string name="app_disclaimer">App disclaimer</string>
 
 </resources>

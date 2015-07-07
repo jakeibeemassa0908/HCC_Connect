@@ -15,7 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 public class Dashboard extends Activity
      implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private String mFullSiteURL ="https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login";
+    private final String mFullSiteURL ="https://hccsaweb.hccs.edu:8080/psp/csprd/?cmd=login";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

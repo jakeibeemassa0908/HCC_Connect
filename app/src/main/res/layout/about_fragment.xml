@@ -52,7 +52,7 @@
             android:id="@+id/disclaimer_button"
             android:layout_width="match_parent"
             android:layout_gravity="center"
-            android:text="App Disclaimer"
+            android:text="@string/app_disclaimer"
             android:textColor="@color/white"
             android:background="@drawable/background_discl"
             android:layout_height="wrap_content"/>

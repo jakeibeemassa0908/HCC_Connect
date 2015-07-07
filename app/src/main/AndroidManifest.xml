@@ -24,7 +24,6 @@
         </activity>
         <activity
             android:name="com.hccs.app.studentIn.AboutActivity"
-            android:parentActivityName="com.hccs.app.studentIn.Dashboard"
             android:configChanges="orientation|screenSize"
             android:theme="@style/aboutTheme">
             <meta-data
@@ -33,7 +32,6 @@
         </activity>
         <activity
             android:name="com.hccs.app.studentIn.SettingsActivity"
-            android:parentActivityName="com.hccs.app.studentIn.Dashboard"
             android:configChanges="orientation|screenSize"
             android:label="@string/action_settings"
             android:theme="@style/AppTheme">
@@ -44,7 +42,6 @@
 
         <activity
             android:name="com.hccs.app.studentIn.DisclaimerActivity"
-            android:parentActivityName="com.hccs.app.studentIn.Dashboard"
             android:configChanges="orientation|screenSize"
             android:theme="@style/aboutTheme">
             <meta-data

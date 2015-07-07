@@ -32,9 +32,9 @@ public  class PlaceholderFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    public static int mNumber;
+    private static int mNumber;
 
-    private String mBaseUrl= "https://psmobile.hccs.edu";
+    private final String mBaseUrl= "https://psmobile.hccs.edu";
     private String mUrl;
     private WebView mWebView;
     private  ProgressBar progressBar;

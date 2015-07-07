@@ -19,8 +19,8 @@ import android.widget.ProgressBar;
  */
 public class AboutFragment extends Fragment {
 
-    public WebView mWebView;
-    public String abouturl="https://psmobile.hccs.edu/index.php/app/about";
+    private WebView mWebView;
+    private final String abouturl="https://psmobile.hccs.edu/index.php/app/about";
 
 
     @Override

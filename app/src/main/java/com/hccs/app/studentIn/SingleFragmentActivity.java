@@ -10,7 +10,7 @@ public abstract class SingleFragmentActivity extends ActionBarActivity {
 
     protected abstract android.app.Fragment createFragment();
 
-    protected int getLayoutResId(){
+    private int getLayoutResId(){
         return R.layout.activity_fragment;
     }
 
