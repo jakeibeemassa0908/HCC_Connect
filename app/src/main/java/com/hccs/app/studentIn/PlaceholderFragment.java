@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public  class PlaceholderFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static int mNumber;
+    private static final String TAG = PlaceholderFragment.class.getName();
 
     private final String mBaseUrl= "https://psmobile.hccs.edu";
     private String mUrl;
@@ -54,6 +56,7 @@ public  class PlaceholderFragment extends Fragment {
     }
 
     public PlaceholderFragment() {
+        
     }
 
 
@@ -171,6 +174,7 @@ public  class PlaceholderFragment extends Fragment {
 
 
                 SharedPreferences mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                //Log.d(TAG,"Shared preference is  :" + mSharedPrefs);
                 if(mSharedPrefs.getBoolean(SettingsActivity.PREF_AUTOFILL,false)){
                     if(url.equals("https://psmobile.hccs.edu/index.php/app/profile/loginform")){
                         String user=mSharedPrefs.getString(SettingsActivity.PREF_USERNAME,"");
