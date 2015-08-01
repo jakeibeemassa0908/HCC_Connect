@@ -2,7 +2,9 @@ package com.hccs.app.studentIn;
 
 import android.app.Activity;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -58,9 +60,14 @@ public class Dashboard extends Activity
         }
         else{
             // update the main content by replacing fragments
+            String fragTag = "FRAGMENT_1"+position;
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position))
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            Fragment fragment = fragmentManager.findFragmentByTag(fragTag);
+            if(fragment==null){
+                fragment = PlaceholderFragment.newInstance(position);
+            }
+            ft.replace(R.id.container, fragment,fragTag)
                     .commit();
         }
     }

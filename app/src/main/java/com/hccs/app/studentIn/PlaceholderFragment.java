@@ -38,7 +38,7 @@ public  class PlaceholderFragment extends Fragment {
 
     private final String mBaseUrl= "https://psmobile.hccs.edu";
     private String mUrl;
-    private WebView mWebView;
+    public static WebView mWebView;
     private  ProgressBar progressBar;
     private LinearLayout noInternetLayout;
 
@@ -59,6 +59,11 @@ public  class PlaceholderFragment extends Fragment {
         
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mWebView.destroy();
+    }
 
     @SuppressWarnings("SetJavaScriptEnabled")
     @Override
