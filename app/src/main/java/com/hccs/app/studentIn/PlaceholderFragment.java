@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.hccs.app.studentIn.util.Constants;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,7 +37,7 @@ public  class PlaceholderFragment extends Fragment {
     private static int mNumber;
     private static final String TAG = PlaceholderFragment.class.getName();
 
-    private final String mBaseUrl= "https://psmobile.hccs.edu";
+    private final String mBaseUrl= "https://myeagle.hccs.edu";
     private String mUrl;
     public static WebView mWebView;
     private  ProgressBar progressBar;
@@ -74,69 +75,69 @@ public  class PlaceholderFragment extends Fragment {
         switch (number){
             case 1:
                 //Dashboard
-                mUrl=mBaseUrl;
+                mUrl= Constants.DASHBOARD;
                 break;
             case 2:
                 //Financials
-                mUrl =mBaseUrl+"/index.php/app/profile/submenus/financials";
+                mUrl =Constants.FINANCIAL_OWE;
                 break;
             case 3:
                 //Schedule
-                mUrl= mBaseUrl+"/index.php/app/user/schedule/index";
+                mUrl= Constants.SCHEDULE;
                 break;
             case 4:
                 //academics
-                mUrl = mBaseUrl+"/index.php/app/profile/submenus/myacad";
+                mUrl = Constants.ACADEMICS_TRANSCRIPT;
                 break;
             case 5:
                 //Enrollment
-                mUrl= mBaseUrl+"/index.php/app/profile/submenus/enrollment";
+                mUrl= Constants.ENROLLMENT_SHOPPING_CART;
                 break;
             case 6:
                 //My Information
-                mUrl =mBaseUrl+"/index.php/app/profile/submenus/myinfo";
+                mUrl =Constants.MY_INFO_ADDRESS;
                 break;
             case 7:
                 //Widgets
-                mUrl= mBaseUrl+"/index.php/app/user/widget";
+                mUrl= Constants.WIDGET;
                 break;
             case 8:
                 //EGLS3
-                mUrl = mBaseUrl+"/index.php/app/courseval/EGLS3";
+                mUrl = Constants.EGLS3;
                 break;
             case 9:
                 mUrl = mBaseUrl+"/index.php/app/about";
                 break;
             case -1:
                 //Logout
-                mUrl=mBaseUrl+"/index.php/app/profile/logout";
+                mUrl=Constants.LOGOUT;
                 break;
             case 11:
                 //course catalog
-                mUrl = mBaseUrl+"/index.php/app/catalog/listCatalogCareers";
+                mUrl = Constants.CATALOG;
                 break;
             case 12:
                 //class search
-                mUrl = mBaseUrl+"/index.php/app/catalog/classSearch";
+                mUrl = Constants.CLASS_SEARCH;
                 break;
             case 13:
                 //campus map
-                mUrl = mBaseUrl+"/index.php/app/catalog/listBuilding";
+                mUrl = Constants.MAP;
                 break;
             case 14:
                 //news
-                mUrl = mBaseUrl+"/index.php/app/services/news";
+                mUrl = Constants.NEWS;
                 break;
             case 15:
                 //library
-                mUrl = "http://library.hccs.edu/mobile/3575";
+                mUrl = Constants.LIBRARY;
                 break;
             case 16:
                 //calendar
-                mUrl = mBaseUrl+"/index.php/app/services/athletics";
+                mUrl = Constants.CALENDAR;
                 break;
             default:
-                mUrl=mBaseUrl;
+                mUrl=Constants.DASHBOARD;
         }
 
         View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
