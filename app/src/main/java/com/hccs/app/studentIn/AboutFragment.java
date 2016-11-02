@@ -14,6 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.hccs.app.studentIn.util.Utils;
+
 /**
  * Created by theotherside on 27/03/15.
  */
@@ -36,6 +38,9 @@ public class AboutFragment extends Fragment {
         mWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                //if url is phone or address
+                if(Utils.check(url,getActivity()))
+                    return true;
                 view.loadUrl(url);
                 return true; // super.shouldOverrideUrlLoading(view, url);
             }

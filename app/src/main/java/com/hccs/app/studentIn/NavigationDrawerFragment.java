@@ -373,7 +373,6 @@ public class NavigationDrawerFragment extends Fragment {
         fullSite.setImage(R.drawable.ic_action_action_language);
         mDrawerItems.add(fullSite);
 
-
     }
 
     public class DrawerAdapter extends ArrayAdapter<DrawerItem>{

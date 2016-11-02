@@ -1,14 +1,13 @@
 package com.hccs.app.studentIn;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -21,9 +20,9 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.hccs.app.studentIn.util.Constants;
+import com.hccs.app.studentIn.util.Utils;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -66,7 +65,8 @@ public  class PlaceholderFragment extends Fragment {
         mWebView.destroy();
     }
 
-    @SuppressWarnings("SetJavaScriptEnabled")
+   // @SuppressWarnings("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public  class PlaceholderFragment extends Fragment {
                 mUrl = Constants.EGLS3;
                 break;
             case 9:
-                mUrl = mBaseUrl+"/index.php/app/about";
+                //About is taken care of by the Dashboard class
                 break;
             case -1:
                 //Logout
@@ -220,26 +220,10 @@ public  class PlaceholderFragment extends Fragment {
         return rootView;
     }
 
-    private boolean checkAndLoad(WebView webView, String url){
-        if(url.startsWith("tel:")){
-            String number =url.replace("-","").replace("/","");
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(number));
-            startActivity(intent);
-            return true;
-        }else if(url.startsWith("mailto:")){
-            String email=url.replace("mailto:","").trim();
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("message/rfc822");
-            intent.putExtra(Intent.EXTRA_EMAIL,new String[]{email});
-            try{
-                startActivity(intent);
-                return true;
-            }catch (android.content.ActivityNotFoundException ex ){
-                Toast.makeText(getActivity(), getString(R.string.no_email_client), Toast.LENGTH_LONG).show();
-                return false;
-            }
-        }
-
+    private void checkAndLoad(WebView webView, String url){
+        //if the url is phone, or email, don't load it
+        if(Utils.check(url,getActivity()))
+            return;
         //if network active and connected
         if(isNetworkAvailable()){
             webView.loadUrl(url);
@@ -249,7 +233,6 @@ public  class PlaceholderFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
             noInternetLayout.setVisibility(View.VISIBLE);
         }
-        return true;
     }
 
     private boolean isNetworkAvailable(){

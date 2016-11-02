@@ -46,7 +46,7 @@ public class Constants {
     public static final String WIDGET=BASE_URL+"/app/user/widget";
     public static final String EGLS3=BASE_URL+"/app/courseval/EGLS3";
     public static final String SPRINGBOARD=BASE_URL+"/app/springboard/index";
-    public static final String CALENDAR= BASE_URL+"http://www.hccs.edu/district/events-calendar/academic-calendar/";
+    public static final String CALENDAR= "http://www.hccs.edu/district/events-calendar/academic-calendar/";
     public static final String MAP=BASE_URL+"/app/catalog/listBuilding";
     public static final String CLASS_SEARCH=BASE_URL+"/app/catalog/classSearch";
     public static final String NEWS=BASE_URL+"/app/services/feed/rss/news";
